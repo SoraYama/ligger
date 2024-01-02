@@ -151,8 +151,4 @@ class Ligger {
   }
 }
 
-const instance = Ligger.getInstance()
-
-export const logger = instance.getLogger()
-
-export default instance
+export default Ligger
