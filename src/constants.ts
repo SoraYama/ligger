@@ -11,7 +11,7 @@ export const COLOR_CONFIG = {
   error: 'linear-gradient(135deg, #FF5D25 10%, #FF0410 100%);',
 }
 
-export const LOG4FE_INIT_CONFIG: LogConfig = {
+export const LIGGER_DEFAULT_INIT_CONFIG: LogConfig = {
   loggerInitOptions: {
     level: 'info',
     enabled: false,

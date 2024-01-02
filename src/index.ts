@@ -1,14 +1,15 @@
-import { initLoggers, isWeChatMiniProgram, isWeb } from './env'
+import { isMiniApp } from 'universal-env'
+
 import Booster from './booster'
 import {
   COLOR_CONFIG,
-  LOG4FE_INIT_CONFIG,
+  LIGGER_DEFAULT_INIT_CONFIG,
   MAIN_LOGGER_NAME,
 } from './constants'
+import { initLoggers, isWeChatMiniProgram, isWeb } from './env'
 import Logger from './logger'
 import { LogConfig, LoggerInitParam } from './types'
 import { getPrefixedText, noop } from './utils'
-import { isMiniApp } from 'universal-env'
 
 declare global {
   interface Window {
@@ -23,7 +24,7 @@ class DevToolsBooster {
 class Ligger {
   private static _instance: null | Ligger = null
 
-  static getInstance(config: LogConfig = LOG4FE_INIT_CONFIG): Ligger {
+  static getInstance(config: LogConfig = LIGGER_DEFAULT_INIT_CONFIG): Ligger {
     return Ligger._instance || new Ligger(config)
   }
 
@@ -49,10 +50,6 @@ class Ligger {
   }
 
   list = () => {
-    if (!this._initLoggers) {
-      return
-    }
-
     const relist = this.list
     const output = new DevToolsBooster()
     output.MAIN = new Booster(this.loggers.get(MAIN_LOGGER_NAME)!, relist)
@@ -113,7 +110,7 @@ class Ligger {
 
   private _parse(params: LogConfig) {
     const config = {
-      ...LOG4FE_INIT_CONFIG,
+      ...LIGGER_DEFAULT_INIT_CONFIG,
       ...params,
     }
 

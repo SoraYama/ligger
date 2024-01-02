@@ -15,7 +15,7 @@ export const initLoggers: string = (() => {
     return qs.get('initLoggers') ?? ''
   }
   if (isWeChatMiniProgram) {
-    wx.getStorageSync<string>('initLoggers') ?? ''
+    return wx.getStorageSync<string>('initLoggers') ?? ''
   }
-  return ''
+  return 'main'
 })()
