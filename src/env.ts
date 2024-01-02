@@ -8,15 +8,17 @@ export {
 }
 
 export const initLoggers: string = (() => {
+  let initLoggers: string | null | undefined = ''
+
   if (isNode) {
-    return process.env.INIT_LOGGERS ?? ''
+    initLoggers = process.env.INIT_LOGGERS
   }
   if (isWeChatMiniProgram) {
-    return wx.getStorageSync<string>('initLoggers') ?? ''
+    initLoggers = wx.getStorageSync<string>('initLoggers')
   }
   if (isWeb) {
     const qs = new URLSearchParams(location.search)
-    return qs.get('initLoggers') ?? ''
+    initLoggers = qs.get('initLoggers')
   }
-  return MAIN_LOGGER_NAME
+  return initLoggers ?? MAIN_LOGGER_NAME
 })()
