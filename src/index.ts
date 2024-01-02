@@ -62,9 +62,9 @@ class Ligger {
     this._getConsoleMethod('table')(output)
   }
 
-  getLogger(name?: string, options?: Omit<LoggerInitParam, 'name'>) {
+  getLogger(name?: string, options?: Omit<LoggerInitParam, 'name'>): Logger {
     if (!name) {
-      return this.loggers.get(MAIN_LOGGER_NAME)
+      return this.loggers.get(MAIN_LOGGER_NAME)!
     }
 
     const _options = {
