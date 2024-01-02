@@ -1,0 +1,32 @@
+{
+  "name": "ligger",
+  "version": "0.1.0",
+  "description": "Light logger for multi end",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "files": [
+    "lib",
+    "README.md",
+    "LICENSE.md",
+    "package.json"
+  ],
+  "keywords": ["logging", "sorayama", "logger"],
+  "author": {
+    "email": "sorayamahou@gmail.com",
+    "name": "SoraYama"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.10.6",
+    "@typescript-eslint/eslint-plugin": "^6.17.0",
+    "@typescript-eslint/parser": "^6.17.0",
+    "eslint": "^8.56.0",
+    "miniprogram-api-typings": "^3.12.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "universal-env": "^3.3.3"
+  }
+}
