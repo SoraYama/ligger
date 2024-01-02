@@ -1,5 +1,3 @@
-import { isWeb } from './env'
-
 const autoComplete = (dig: string) => (dig.length === 1 ? `0${dig}` : dig)
 
 export const getTimeString = (time: Date | null) => {
@@ -12,10 +10,5 @@ export const getTimeString = (time: Date | null) => {
 }
 
 export const getPrefixedText = (txt: string) => `[LIGGER] - ${txt}`
-
-export const styledSupport =
-  isWeb && navigator && navigator.userAgent
-    ? /chrome|firefox|safari/gi.test(navigator.userAgent)
-    : false
 
 export const noop = () => {}

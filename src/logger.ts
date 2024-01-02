@@ -1,3 +1,4 @@
+import { isNode } from 'universal-env'
 import { COLOR_CONFIG, LOG_LEVELS } from './constants'
 import {
   _LogOptions,
@@ -6,7 +7,7 @@ import {
   LoggerInitParam,
   LoggerLevel,
 } from './types'
-import { getPrefixedText, getTimeString, styledSupport } from './utils'
+import { getPrefixedText, getTimeString } from './utils'
 
 class Logger {
   level: LoggerLevel
@@ -37,7 +38,7 @@ class Logger {
     this.name = name
     this.level = level
     this.enabled = enabled
-    this.styled = styled && styledSupport
+    this.styled = styled && !isNode
     this.styleCSS = styleCSS
     this.getPrefix = prefix
     this._logOnceSet = new Set()
