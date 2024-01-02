@@ -1,4 +1,4 @@
-import { initLoggers, isWeb } from './env'
+import { initLoggers, isWeChatMiniProgram, isWeb } from './env'
 import Booster from './booster'
 import {
   COLOR_CONFIG,
@@ -8,10 +8,11 @@ import {
 import Logger from './logger'
 import { LogConfig, LoggerInitParam } from './types'
 import { getPrefixedText, noop } from './utils'
+import { isMiniApp } from 'universal-env'
 
 declare global {
   interface Window {
-    __TXD_DBG__: Log4txd;
+    __LIGGER__: Ligger;
   }
 }
 
@@ -19,11 +20,11 @@ class DevToolsBooster {
   [key: string]: Booster;
 }
 
-class Log4txd {
-  private static _instance: null | Log4txd = null
+class Ligger {
+  private static _instance: null | Ligger = null
 
-  static getInstance(config: LogConfig = LOG4FE_INIT_CONFIG): Log4txd {
-    return Log4txd._instance || new Log4txd(config)
+  static getInstance(config: LogConfig = LOG4FE_INIT_CONFIG): Ligger {
+    return Ligger._instance || new Ligger(config)
   }
 
   readonly colors = COLOR_CONFIG
@@ -33,7 +34,7 @@ class Log4txd {
   config: LogConfig = {}
 
   constructor(params: LogConfig) {
-    if (Log4txd._instance) {
+    if (Ligger._instance) {
       throw new Error(getPrefixedText('Log4fe is singleton'))
     }
     if (typeof params === 'undefined') {
@@ -107,11 +108,13 @@ class Log4txd {
   }
 
   private _init() {
-    Log4txd._instance = this
+    Ligger._instance = this
     this._initLogger()
 
     if (isWeb) {
-      window.__TXD_DBG__ = this
+      window.__LIGGER__ = this
+    } else if (isWeChatMiniProgram || isMiniApp) {
+      getApp().globalData.__LIGGER__ = this
     }
   }
 
@@ -148,7 +151,7 @@ class Log4txd {
   }
 }
 
-const instance = Log4txd.getInstance()
+const instance = Ligger.getInstance()
 
 export const logger = instance.getLogger()
 

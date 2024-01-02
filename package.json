@@ -1,9 +1,10 @@
 {
   "name": "ligger",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Light logger for multi end",
   "main": "lib/index.js",
   "scripts": {
+    "prepublish": "npm run build",
     "build": "tsc -p tsconfig.json"
   },
   "files": [

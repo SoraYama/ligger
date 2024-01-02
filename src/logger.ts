@@ -123,7 +123,7 @@ class Logger {
       ? typeof this.getPrefix === 'string'
         ? this.getPrefix
         : this.getPrefix(timeStr, this.name, this.level)
-      : `[LOG4TXD] ${timeStr} <${this.name.toUpperCase()}> `
+      : `[LIGGER] ${timeStr} <${this.name.toUpperCase()}> `
 
     if (this.styled && needStyle) {
       console[level](

@@ -11,7 +11,7 @@ export const getTimeString = (time: Date | null) => {
   return `${h}:${m}:${s}`
 }
 
-export const getPrefixedText = (txt: string) => `[LOG4TXD] - ${txt}`
+export const getPrefixedText = (txt: string) => `[LIGGER] - ${txt}`
 
 export const styledSupport =
   isWeb && navigator && navigator.userAgent
