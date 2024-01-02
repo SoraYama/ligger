@@ -7,7 +7,10 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
+    "removeComments": false,
+    "declaration": true,
+    "sourceMap": true,
     "skipLibCheck": true
   },
-  "include": ["./src", "src/utils.ts", "src/types.ts"]
+  "include": ["./src"]
 }
