@@ -1,6 +1,6 @@
 {
   "name": "ligger",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Light logger for multi end",
   "main": "lib/index.js",
   "scripts": {

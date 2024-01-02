@@ -1,4 +1,4 @@
-import { isMiniApp, isNode, isWeChatMiniProgram, isWeb } from 'universal-env'
+import { isNode, isWeChatMiniProgram, isWeb } from 'universal-env'
 
 export {
   isWeChatMiniProgram,
@@ -8,14 +8,14 @@ export {
 
 export const initLoggers: string = (() => {
   if (isNode) {
-    return process.env.INIT_LOGGERS
+    return process.env.INIT_LOGGERS ?? ''
   }
   if (isWeb) {
     const qs = new URLSearchParams(location.search)
     return qs.get('initLoggers') ?? ''
   }
-  if (isMiniApp || isWeChatMiniProgram) {
-    return getApp().globalData?.initLoggers ?? ''
+  if (isWeChatMiniProgram) {
+    wx.getStorageSync<string>('initLoggers') ?? ''
   }
   return ''
 })()
