@@ -45,7 +45,7 @@ class Ligger {
     } else {
       throw new Error(getPrefixedText('Bad init param format'))
     }
-    this._init()
+    this.init()
   }
 
   list = () => {
@@ -98,6 +98,19 @@ class Ligger {
     return typeof this._initLoggers === 'string' && this._initLoggers.length > 0 && this._initLoggers.indexOf('ALL') > -1
   }
 
+  public init() {
+    Ligger._instance = this
+    this._initLogger()
+
+    if (isWeb) {
+      window.__LIGGER__ = this
+    } else if (isWeChatMiniProgram || isMiniApp) {
+      if (getApp()?.globalData) {
+        getApp().globalData.__LIGGER__ = this
+      }
+    }
+  }
+
   private _parse(params: LogConfig) {
     const config = {
       ...LOG4FE_INIT_CONFIG,
@@ -105,17 +118,6 @@ class Ligger {
     }
 
     this.config = config
-  }
-
-  private _init() {
-    Ligger._instance = this
-    this._initLogger()
-
-    if (isWeb) {
-      window.__LIGGER__ = this
-    } else if (isWeChatMiniProgram || isMiniApp) {
-      getApp().globalData.__LIGGER__ = this
-    }
   }
 
   private _initLogger() {
