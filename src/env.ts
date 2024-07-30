@@ -1,10 +1,11 @@
-import { isNode, isWeChatMiniProgram, isWeb } from 'universal-env'
+import { isNode, isWeChatMiniProgram, isWeb, isWeex } from 'universal-env'
 import { MAIN_LOGGER_NAME } from './constants'
 
 export {
   isWeChatMiniProgram,
   isNode,
   isWeb,
+  isWeex,
 }
 
 export const initLoggers: string = (() => {
@@ -16,7 +17,7 @@ export const initLoggers: string = (() => {
   if (isWeChatMiniProgram) {
     initLoggers = wx.getStorageSync<string>('initLoggers')
   }
-  if (isWeb) {
+  if (isWeb && isWeex) {
     const qs = new URLSearchParams(location.search)
     initLoggers = qs.get('initLoggers')
   }

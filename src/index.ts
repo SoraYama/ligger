@@ -6,7 +6,7 @@ import {
   LIGGER_DEFAULT_INIT_CONFIG,
   MAIN_LOGGER_NAME,
 } from './constants'
-import { initLoggers, isWeChatMiniProgram, isWeb } from './env'
+import { initLoggers, isWeChatMiniProgram, isWeb, isWeex } from './env'
 import Logger from './logger'
 import { LogConfig, LoggerInitParam } from './types'
 import { getPrefixedText, noop } from './utils'
@@ -99,7 +99,7 @@ class Ligger {
     Ligger._instance = this
     this._initLogger()
 
-    if (isWeb) {
+    if (isWeb || isWeex) {
       window.__LIGGER__ = this
     } else if (isWeChatMiniProgram || isMiniApp) {
       if (getApp()?.globalData) {
