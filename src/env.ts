@@ -12,7 +12,7 @@ export const initLoggers: string = (() => {
   let initLoggers: string | null | undefined = ''
 
   if (isNode) {
-    initLoggers = process.env.INIT_LOGGERS
+    initLoggers = process?.env?.INIT_LOGGERS
   }
   if (isWeChatMiniProgram) {
     initLoggers = wx.getStorageSync<string>('initLoggers')
