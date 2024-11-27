@@ -151,3 +151,7 @@ class Ligger {
 }
 
 export default Ligger
+
+export { default as Logger } from './logger'
+export { default as Booster } from './booster'
+export type * from './types'
